@@ -1,0 +1,200 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    padding: 20px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.container {
+    max-width: 600px;
+    margin: auto;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+input[type="text"],
+input[type="date"],
+select {
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+button {
+    padding: 10px 20px;
+    background: #4CAF50;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    white-space: nowrap;
+}
+
+button:hover {
+    background: #45a049;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    padding: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 5px;
+    box-sizing: border-box;
+    transition: background-color 0.3s;
+}
+
+li span {
+    cursor: pointer;
+    flex-grow: 1;
+    user-select: none;
+    color: #000; /* Чорний текст у світлій темі */
+}
+
+.done {
+    text-decoration: line-through;
+    color: gray;
+}
+
+li small {
+    font-size: 0.85em;
+    color: #555;
+    margin-left: 10px;
+}
+
+li div {
+    display: flex;
+    gap: 5px;
+}
+
+li button {
+    padding: 5px 10px;
+    font-size: 16px;
+    line-height: 1;
+}
+
+#stats {
+    margin-top: 20px;
+    font-weight: bold;
+    text-align: center;
+    color: #333;
+}
+
+.dark-theme {
+    background: #121212;
+    color: #eee;
+}
+
+.dark-theme .container {
+    background: #1e1e1e;
+    box-shadow: 0 0 10px rgba(255,255,255,0.1);
+}
+
+.dark-theme input,
+.dark-theme select {
+    background: #2c2c2c;
+    color: #eee;
+    border: 1px solid #555;
+}
+
+.dark-theme button {
+    background: #3caf50;
+}
+
+.dark-theme button:hover {
+    background: #36a045;
+}
+
+.dark-theme li {
+    background: #2a2a2a;
+    border: 1px solid #444;
+}
+
+.dark-theme li span {
+    color: #eee !important; /* Світлий текст завдань */
+}
+
+.dark-theme li.done span {
+    color: #888 !important; /* Текст виконаних завдань */
+}
+
+.dark-theme li small {
+    color: #bbb !important; /* Текст додаткової інформації */
+}
+
+.login-container {
+    max-width: 400px;
+    margin: 100px auto;
+}
+
+.login-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.login-container label {
+    font-weight: bold;
+}
+
+.login-container input {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.login-container button {
+    padding: 10px;
+    font-size: 18px;
+    background: #4CAF50;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.login-container button:hover {
+    background: #45a049;
+}
+
+.login-container p {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.login-container a {
+    color: #4caf50;
+    text-decoration: none;
+}
+
+.login-container a:hover {
+    text-decoration: underline;
+}

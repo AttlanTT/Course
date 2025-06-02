@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8" />
+    <title>Вхід — To-Do Менеджер</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+    <div class="container login-container">
+        <h1>Вхід</h1>
+        <form method="POST" action="{{ url_for('login') }}">
+            <label for="username">Ім'я користувача</label>
+            <input type="text" id="username" name="username" required />
+
+            <label for="password">Пароль</label>
+            <input type="password" id="password" name="password" required />
+
+            <button type="submit">Увійти</button>
+        </form>
+        <p>Ще не маєш акаунту? <a href="{{ url_for('register') }}">Зареєструватися</a></p>
+    </div>
+</body>
+</html>

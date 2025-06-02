@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8" />
+    <title>📝 Мій список справ</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📝 Мій список справ</h1>
+            <div class="user-info">
+                Привіт, <strong>{{ username }}</strong>!
+                <a href="{{ url_for('logout') }}" class="logout-button">Вийти</a>
+            </div>
+        </header>
+
+        <div class="input-group">
+            <input type="text" id="taskInput" placeholder="Нове завдання..." />
+            <input type="date" id="taskDeadline" />
+            <select id="taskPriority">
+                <option value="low">Низький пріоритет</option>
+                <option value="medium" selected>Середній пріоритет</option>
+                <option value="high">Високий пріоритет</option>
+            </select>
+            <button onclick="addTask()">Додати</button>
+        </div>
+
+        <div class="input-group">
+            <input type="text" id="searchInput" placeholder="Пошук..." oninput="loadTasks()" />
+            <button onclick="toggleTheme()">🌙 Тема</button>
+        </div>
+
+        <ul id="taskList"></ul>
+
+        <div id="stats"></div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
