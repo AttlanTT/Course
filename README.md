@@ -47,20 +47,15 @@
 Структура проєкту
 
 todo-app/
-│
-├── app.py                  
-├── requirements.txt      
-├── README.md              
-│
-├── data/                   
-│   ├── users.json          
-│   └── {username}_tasks.json
-│
-├── static/                 
-│   ├── style.css           
-│   └── script.js           
-│
-└── templates/             
-    ├── index.html         
-    ├── login.html         
-    └── register.html      
+├── app.py
+├── data/
+│   └── users.json
+├── static/
+│   ├── style.css
+│   └── script.js
+├── templates/
+│   ├── index.html
+│   ├── login.html
+│   └── register.html
+├── README.md
+└── requirements.txt
