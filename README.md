@@ -34,12 +34,9 @@
 1. Клонуй репозиторій або скопіюй файли проекту.
 2. Встанови Python 3.6+ (якщо ще не встановлено).
 3. Встанови залежності (Flask):
-    ```bash
-    pip install flask
-    ```
 4. Запусти сервер:
     ```bash
-    python app.py
+    py app.py
     ```
 5. Відкрий у браузері:  
     ```
@@ -50,20 +47,19 @@
 Структура проєкту
 
 todo-app/
-│
-├── app.py                  
-├── requirements.txt      
+├── app.py                 
+├── requirements.txt       
 ├── README.md              
 │
-├── data/                   
-│   ├── users.json          
-│   └── {username}_tasks.json
+├── data/                 
+│   ├── users.json         
+│   └── {username}_tasks.json 
 │
-├── static/                 
-│   ├── style.css           
-│   └── script.js           
+├── static/               
+│   ├── style.css          
+│   └── script.js          
 │
 └── templates/             
     ├── index.html         
-    ├── login.html         
+    ├── login.html        
     └── register.html      
