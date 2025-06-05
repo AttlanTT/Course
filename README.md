@@ -47,8 +47,7 @@
 Структура проєкту
 
 todo-app/
-├── app.py                 
-├── requirements.txt       
+├── app.py                        
 ├── README.md              
 │
 ├── data/                 
