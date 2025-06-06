@@ -73,7 +73,7 @@ li span {
     cursor: pointer;
     flex-grow: 1;
     user-select: none;
-    color: #000; /* Чорний текст у світлій темі */
+    color: #000; 
 }
 
 .done {
@@ -136,15 +136,15 @@ li button {
 }
 
 .dark-theme li span {
-    color: #eee !important; /* Світлий текст завдань */
+    color: #eee !important; 
 }
 
 .dark-theme li.done span {
-    color: #888 !important; /* Текст виконаних завдань */
+    color: #888 !important; 
 }
 
 .dark-theme li small {
-    color: #bbb !important; /* Текст додаткової інформації */
+    color: #bbb !important; 
 }
 
 .login-container {
