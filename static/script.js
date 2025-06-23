@@ -4,6 +4,7 @@ const taskDeadline = document.getElementById('taskDeadline');
 const taskPriority = document.getElementById('taskPriority');
 const searchInput = document.getElementById('searchInput');
 const stats = document.getElementById('stats');
+const liveStats = document.getElementById('liveStats');
 
 function loadTasks() {
     fetch('/api/tasks')
@@ -59,17 +60,24 @@ function addTask() {
         taskDeadline.value = '';
         taskPriority.value = 'medium';
         loadTasks();
+        updateStats();
     });
 }
 
 function toggleDone(id) {
     fetch(`/api/tasks/${id}`, { method: 'PUT' })
-        .then(() => loadTasks());
+        .then(() => {
+            loadTasks();
+            updateStats();
+        });
 }
 
 function deleteTask(id) {
     fetch(`/api/tasks/${id}`, { method: 'DELETE' })
-        .then(() => loadTasks());
+        .then(() => {
+            loadTasks();
+            updateStats();
+        });
 }
 
 function editTask(id) {
@@ -82,8 +90,23 @@ function editTask(id) {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ title: newTitle.trim() })
-        }).then(() => loadTasks());
+        }).then(() => {
+            loadTasks();
+            updateStats();
+        });
     }
+}
+
+function updateStats() {
+    fetch('/api/stats')
+        .then(res => res.json())
+        .then(data => {
+            liveStats.innerText = `📊 Завдань: ${data.total} | ✅ Виконано: ${data.done} | ⏳ Залишилось: ${data.remaining}`;
+        });
+}
+
+function downloadExport() {
+    window.open('/export/stream', '_blank');
 }
 
 function toggleTheme() {
@@ -96,4 +119,5 @@ window.onload = () => {
         document.body.classList.add('dark-theme');
     }
     loadTasks();
+    updateStats();
 };

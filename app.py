@@ -1,6 +1,10 @@
-from flask import Flask, request, jsonify, render_template, redirect, session, url_for
+from flask import Flask, request, jsonify, render_template, redirect, session, url_for, send_file
 import json, os, hashlib
 from functools import wraps
+from io import StringIO
+from utils import generators, memoization, priority_queue, async_array, large_data, reactive
+from utils.memoization import memoize
+from utils.priority_queue import BiPriorityQueue
 
 app = Flask(__name__)
 app.secret_key = 'supersecretkey'
@@ -120,6 +124,61 @@ def delete_task(task_id):
     tasks = [t for t in tasks if t['id'] != task_id]
     save_tasks(session['user'], tasks)
     return '', 204
+
+# ============ ЗАВДАННЯ 1–7 ============
+
+@app.route('/demo/fibonacci')
+def demo_fib():
+    gen = generators.fibonacci()
+    out = [str(next(gen)) for _ in range(10)]
+    return "<pre>" + "\n".join(out) + "</pre>"
+
+@app.route('/demo/reactive')
+def demo_reactive():
+    logs = []
+    emitter = reactive.EventEmitter()
+    emitter.subscribe("message", lambda msg: logs.append(f"📩 {msg}"))
+    emitter.emit("message", "Привіт від EventEmitter!")
+    return "<br>".join(logs)
+
+@memoize(max_size=10)
+def get_stats(user):
+    tasks = load_tasks(user)
+    total = len(tasks)
+    done = len([t for t in tasks if t['done']])
+    return {'total': total, 'done': done, 'remaining': total - done}
+
+@app.route('/api/stats')
+@login_required
+def stats():
+    return jsonify(get_stats(session['user']))
+
+@app.route('/api/tasks/sorted')
+@login_required
+def get_tasks_sorted():
+    tasks = load_tasks(session['user'])
+    pq = BiPriorityQueue()
+    for t in tasks:
+        p = {'low': 1, 'medium': 2, 'high': 3}.get(t.get('priority', 'medium'), 2)
+        pq.enqueue(t, p)
+    sorted_tasks = []
+    while True:
+        try:
+            sorted_tasks.append(pq.dequeue('highest'))
+        except IndexError:
+            break
+    return jsonify(sorted_tasks)
+
+@app.route('/export/stream')
+@login_required
+def export_stream():
+    tasks = load_tasks(session['user'])
+    output = StringIO()
+    output.write("id,title,priority,done,deadline\n")
+    for task in tasks:
+        output.write(f"{task['id']},{task['title']},{task.get('priority','medium')},{task['done']},{task.get('deadline','')}\n")
+    output.seek(0)
+    return send_file(output, mimetype='text/csv', download_name='tasks.csv', as_attachment=True)
 
 if __name__ == '__main__':
     app.run(debug=True)
