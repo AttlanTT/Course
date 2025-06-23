@@ -125,8 +125,6 @@ def delete_task(task_id):
     save_tasks(session['user'], tasks)
     return '', 204
 
-# ============ ЗАВДАННЯ 1–7 ============
-
 @app.route('/demo/fibonacci')
 def demo_fib():
     gen = generators.fibonacci()
