@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify, render_template, redirect, session, u
 import json, os, hashlib
 from functools import wraps
 from io import StringIO
-from utils import generators, memoization, priority_queue, async_array, large_data, reactive
+from utils import memoization, priority_queue, async_array, large_data, reactive
 from utils.memoization import memoize
 from utils.priority_queue import BiPriorityQueue
 
