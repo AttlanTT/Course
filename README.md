@@ -62,10 +62,8 @@ todo-app/
 │    ├── index.html         
 │    ├── login.html        
 │    └── register.html 
-├── utils/                         
-│   ├── __init__.py
-│   ├── async_array.py              
-│   ├── generators.py               
+├── utils/                           
+│   ├── async_array.py                             
 │   ├── large_data.py               
 │   ├── memoization.py              
 │   ├── priority_queue.py           
