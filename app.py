@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, render_template, redirect, session, url_for, send_file
+from flask import Flask, request, jsonify, render_template, redirect, session, url_for, send_file, Response
 import json, os, hashlib
 from functools import wraps
 from io import StringIO
@@ -46,6 +46,12 @@ def login_required(f):
             return redirect('/login')
         return f(*args, **kwargs)
     return wrapper
+
+def task_csv_stream(tasks):
+    yield "id,title,priority,done,deadline\n"
+    for task in tasks:
+        yield f"{task['id']},{task['title']},{task.get('priority','medium')},{task['done']},{task.get('deadline','')}\n"
+
 
 @app.route('/')
 @login_required
@@ -124,6 +130,12 @@ def delete_task(task_id):
     tasks = [t for t in tasks if t['id'] != task_id]
     save_tasks(session['user'], tasks)
     return '', 204
+
+@app.route('/export/stream-gen')
+@login_required
+def export_stream_gen():
+    tasks = load_tasks(session['user'])
+    return Response(task_csv_stream(tasks), mimetype='text/csv', headers={'Content-Disposition': 'attachment; filename=tasks.csv'})
 
 @app.route('/demo/reactive')
 def demo_reactive():
