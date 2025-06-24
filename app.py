@@ -125,12 +125,6 @@ def delete_task(task_id):
     save_tasks(session['user'], tasks)
     return '', 204
 
-@app.route('/demo/fibonacci')
-def demo_fib():
-    gen = generators.fibonacci()
-    out = [str(next(gen)) for _ in range(10)]
-    return "<pre>" + "\n".join(out) + "</pre>"
-
 @app.route('/demo/reactive')
 def demo_reactive():
     logs = []
