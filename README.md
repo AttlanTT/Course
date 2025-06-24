@@ -59,6 +59,16 @@ todo-app/
 │   └── script.js          
 │
 └── templates/             
-    ├── index.html         
-    ├── login.html        
-    └── register.html      
+│    ├── index.html         
+│    ├── login.html        
+│    └── register.html 
+├── utils/                         
+│   ├── __init__.py
+│   ├── async_array.py              
+│   ├── generators.py               
+│   ├── large_data.py               
+│   ├── memoization.py              
+│   ├── priority_queue.py           
+│   └── reactive.py       
+└── README.md 
+└── LICENSE
